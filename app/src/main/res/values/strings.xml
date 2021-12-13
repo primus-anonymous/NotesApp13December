@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">NotesApp13December</string>
+    <string name="notes">Notes</string>
+    <string name="empty">I\'m empty</string>
+    <string name="try_again_please">Please, try again</string>
+    <string name="retry">Retry</string>
+</resources>

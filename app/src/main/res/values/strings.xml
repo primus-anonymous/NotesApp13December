@@ -4,4 +4,10 @@
     <string name="empty">I\'m empty</string>
     <string name="try_again_please">Please, try again</string>
     <string name="retry">Retry</string>
+    <string name="btn_save">Save</string>
+    <string name="hint_message">Message</string>
+    <string name="hint_title">Title</string>
+    <string name="action_update">Update</string>
+    <string name="action_delete">Delete</string>
+    <string name="btn_update">Update</string>
 </resources>

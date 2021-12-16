@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.neocaptainnemo.notesapp13december.R;
@@ -25,10 +27,21 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private final ArrayList<AdapterItem> data = new ArrayList<>();
 
     private OnClick onClick;
+    private final Fragment fragment;
+
+    public NotesAdapter(Fragment fragment) {
+        this.fragment = fragment;
+    }
 
     public void setData(Collection<AdapterItem> notes) {
         data.clear();
         data.addAll(notes);
+    }
+
+    public int addItem(NoteAdapterItem note) {
+        data.add(note);
+
+        return data.size();
     }
 
     @Override
@@ -96,8 +109,38 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         this.onClick = onClick;
     }
 
+    public int removeItem(Note selectedNote) {
+        int index = 0;
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i) instanceof NoteAdapterItem && ((NoteAdapterItem) data.get(i)).getNote().getId().equals(selectedNote.getId())) {
+                index = i;
+
+                break;
+            }
+        }
+
+        data.remove(index);
+        return index;
+    }
+
+    public int updateItem(NoteAdapterItem adapterItem) {
+        int index = 0;
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i) instanceof NoteAdapterItem && ((NoteAdapterItem) data.get(i)).getNote().getId().equals(adapterItem.getNote().getId())) {
+                index = i;
+
+                break;
+            }
+        }
+
+        data.set(index, adapterItem);
+        return index;
+    }
+
     interface OnClick {
         void onClick(Note note);
+
+        void onLongClick(Note note);
     }
 
     class NoteViewHolder extends RecyclerView.ViewHolder {
@@ -111,13 +154,17 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         public NoteViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            CardView card = itemView.findViewById(R.id.card);
+
+            fragment.registerForContextMenu(card);
+
             title = itemView.findViewById(R.id.title);
 
             message = itemView.findViewById(R.id.content);
 
             date = itemView.findViewById(R.id.date);
 
-            itemView.findViewById(R.id.card).setOnClickListener(new View.OnClickListener() {
+            card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
@@ -128,6 +175,24 @@ public class NotesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             getOnClick().onClick(((NoteAdapterItem) item).getNote());
                         }
                     }
+                }
+            });
+
+            card.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+
+                    card.showContextMenu();
+
+                    AdapterItem item = data.get(getAdapterPosition());
+
+                    if (item instanceof NoteAdapterItem) {
+                        if (getOnClick() != null) {
+                            getOnClick().onLongClick(((NoteAdapterItem) item).getNote());
+                        }
+                    }
+
+                    return true;
                 }
             });
         }

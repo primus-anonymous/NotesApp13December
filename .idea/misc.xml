@@ -5,9 +5,11 @@
       <map>
         <entry key="app/src/main/res/drawable/bg_divider.xml" value="0.25833333333333336" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3255208333333333" />
-        <entry key="app/src/main/res/layout/fragment_notes_list.xml" value="0.2998201729788526" />
+        <entry key="app/src/main/res/layout/fragment_add_not_bottom_sheet.xml" value="0.18072916666666666" />
+        <entry key="app/src/main/res/layout/fragment_notes_list.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_header.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/item_note.xml" value="0.40703517587939697" />
+        <entry key="app/src/main/res/menu/notes_list_context_menu.xml" value="0.18072916666666666" />
       </map>
     </option>
   </component>

@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.neocaptainnemo.notesapp13december.App;
 import com.neocaptainnemo.notesapp13december.R;
+import com.neocaptainnemo.notesapp13december.db.DummyDao;
+import com.neocaptainnemo.notesapp13december.domain.RoomNotesRepository;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,5 +15,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        DummyDao dummyDao = ((App)getApplicationContext()).getDb().userDao();
+
+        new RoomNotesRepository(dummyDao);
     }
 }

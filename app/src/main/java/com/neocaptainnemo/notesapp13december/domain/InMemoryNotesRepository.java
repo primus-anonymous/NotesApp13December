@@ -113,7 +113,7 @@ public class InMemoryNotesRepository implements NotesRepository {
     }
 
     @Override
-    public void update(String noteId, String title, String message, Callback<Note> callback) {
+    public void update(Note note, String title, String message, Callback<Note> callback) {
         executor.execute(new Runnable() {
             @Override
             public void run() {
@@ -131,7 +131,7 @@ public class InMemoryNotesRepository implements NotesRepository {
                         int index = 0;
 
                         for (int i = 0; i < result.size(); i++) {
-                            if (result.get(i).getId().equals(noteId)) {
+                            if (result.get(i).getId().equals(note.getId())) {
                                 index = i;
                                 break;
                             }

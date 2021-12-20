@@ -14,8 +14,10 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.neocaptainnemo.notesapp13december.R;
+import com.neocaptainnemo.notesapp13december.domain.FirestoreNotesRepository;
 import com.neocaptainnemo.notesapp13december.domain.InMemoryNotesRepository;
 import com.neocaptainnemo.notesapp13december.domain.Note;
+import com.neocaptainnemo.notesapp13december.domain.SharedPreferencesNotesRepository;
 
 public class AddNoteBottomSheetDialogFragment extends BottomSheetDialogFragment implements AddNoteView {
 
@@ -74,10 +76,10 @@ public class AddNoteBottomSheetDialogFragment extends BottomSheetDialogFragment 
 //        });
 
         if (getArguments() == null) {
-            presenter = new AddNotePresenter(this, InMemoryNotesRepository.INSTANCE);
+            presenter = new AddNotePresenter(this, FirestoreNotesRepository.INSTANCE);
         } else {
             Note note = getArguments().getParcelable(ARG_NOTE);
-            presenter = new UpdateNotePresenter(this, InMemoryNotesRepository.INSTANCE, note);
+            presenter = new UpdateNotePresenter(this, FirestoreNotesRepository.INSTANCE, note);
         }
     }
 

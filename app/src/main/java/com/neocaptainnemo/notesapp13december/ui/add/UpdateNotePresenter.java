@@ -30,7 +30,7 @@ public class UpdateNotePresenter implements NotePresenter {
     public void onActionPressed(String title, String message) {
         view.showProgress();
 
-        repository.update(note.getId(), title, message, new Callback<Note>() {
+        repository.update(note, title, message, new Callback<Note>() {
             @Override
             public void onSuccess(Note result) {
                 view.hideProgress();

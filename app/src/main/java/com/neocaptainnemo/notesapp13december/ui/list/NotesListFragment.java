@@ -19,8 +19,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.neocaptainnemo.notesapp13december.R;
+import com.neocaptainnemo.notesapp13december.domain.FirestoreNotesRepository;
 import com.neocaptainnemo.notesapp13december.domain.InMemoryNotesRepository;
 import com.neocaptainnemo.notesapp13december.domain.Note;
+import com.neocaptainnemo.notesapp13december.domain.SharedPreferencesNotesRepository;
 import com.neocaptainnemo.notesapp13december.ui.adapter.AdapterItem;
 import com.neocaptainnemo.notesapp13december.ui.adapter.NoteAdapterItem;
 import com.neocaptainnemo.notesapp13december.ui.add.AddNoteBottomSheetDialogFragment;
@@ -51,7 +53,7 @@ public class NotesListFragment extends Fragment implements NotesListView {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        presenter = new NotesPresenter(requireContext(), this, InMemoryNotesRepository.INSTANCE);
+        presenter = new NotesPresenter(requireContext(), this, FirestoreNotesRepository.INSTANCE);
         adapter = new NotesAdapter(this);
 
         adapter.setOnClick(new NotesAdapter.OnClick() {

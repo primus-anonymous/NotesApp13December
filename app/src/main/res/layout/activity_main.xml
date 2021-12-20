@@ -4,5 +4,5 @@
     android:id="@+id/main_fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:name="com.neocaptainnemo.notesapp13december.ui.list.NotesListFragment"
+    android:name="com.neocaptainnemo.notesapp13december.ui.auth.AuthFragment"
     tools:context=".ui.MainActivity" />

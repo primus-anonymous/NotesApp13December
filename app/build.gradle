@@ -1,8 +1,17 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 android {
+    signingConfigs {
+        notes {
+            storeFile file('./keystore.keystore')
+            storePassword '123456789'
+            keyAlias 'keystore'
+            keyPassword '123456789'
+        }
+    }
     compileSdk 31
 
     defaultConfig {
@@ -13,12 +22,17 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.notes
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            signingConfig signingConfigs.notes
         }
     }
     compileOptions {
@@ -38,6 +52,14 @@ dependencies {
 
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    implementation 'com.google.code.gson:gson:2.8.9'
+
+    implementation platform('com.google.firebase:firebase-bom:29.0.3')
+    implementation 'com.google.firebase:firebase-firestore'
+
+    implementation 'com.google.android.gms:play-services-auth:20.0.0'
+
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

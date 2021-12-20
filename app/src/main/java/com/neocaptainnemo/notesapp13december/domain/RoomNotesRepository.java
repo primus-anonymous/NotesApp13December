@@ -23,7 +23,7 @@ public class RoomNotesRepository implements NotesRepository{
     }
 
     @Override
-    public void update(String noteId, String title, String message, Callback<Note> callback) {
+    public void update(Note note, String title, String message, Callback<Note> callback) {
 
     }
 
